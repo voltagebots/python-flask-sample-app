@@ -3,6 +3,7 @@ stages:
   - checkout
   - package
   - test  
+  - push
 steps:
   main_clone:
     title: Cloning main repository...
