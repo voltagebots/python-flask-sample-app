@@ -10,10 +10,26 @@ steps:
     repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
     revision: '${{CF_REVISION}}'
     stage: checkout
+    git: github
+  # my_node_app:
+  #   title: Running unit tests
+  #   image: node:11
+  #   commands:
+  #    - npm install
+  #    - npm run test
+  # MymvnDockerImage:
+  #   title: Building Docker Image
+  #   type: build
+  #   stage: package
+  #   image_name: my-app
+  #   working_directory: ./
+  #   tag: v1.0.1
+  #   dockerfile: Dockerfile-mvn
+  #   disable_push: true
   MyAppDockerImage:
     title: Building Docker Image
     type: build
-    stage: package
+    stage: build
     image_name: my-app-image
     working_directory: ./
     tag: v1.0.1
@@ -26,3 +42,15 @@ steps:
     commands: 
       - pip install pytest
       - pytest
+  push_to_my_registry:
+    stage: 'push'
+    type: push
+    title: Pushing to a registry
+    candidate: ${{MyAppDockerImage}}
+    tag: 'v1.0.0'
+    registry: dockerhub
+    image_name: okpakolee/my-app-image
+    when:
+    branch:
+      only:
+        - dev
