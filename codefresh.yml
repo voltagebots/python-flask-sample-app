@@ -49,7 +49,7 @@ steps:
     candidate: ${{MyAppDockerImage}}
     tag: 'v1.0.0'
     registry: dockerhub
-    image_name: okpakolee
+    image_name: okpakolee/docker101tutorial
     when:
     branch:
       only:
