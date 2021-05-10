@@ -14,7 +14,7 @@ steps:
     title: Building Docker Image
     type: build
     stage: package
-    image_name: my-app-image
+    image_name: okpakolee/jenkinsimage
     working_directory: ./
     tag: v1.0.1
     dockerfile: Dockerfile
@@ -24,4 +24,4 @@ steps:
     stage: test 
     commands: 
       - pip install pytest
-      - pytest
+      - pytest   
