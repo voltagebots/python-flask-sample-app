@@ -18,7 +18,6 @@ steps:
     working_directory: ./
     tag: v1.0.1
     dockerfile: Dockerfile
-    disable_push: true
   MyUnitTests:
     title: Running Unit tests
     image: '${{MyAppDockerImage}}'
